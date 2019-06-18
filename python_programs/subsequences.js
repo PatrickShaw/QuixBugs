@@ -1,17 +1,20 @@
-def subsequences(a, b, k):
-    if k == 0:
-        return []
+const subsequences = (a, b, k) => {
+  if (k === 0) {
+    return [];
+  }
 
-    ret = []
-    for i in range(a, b + 1 - k):
-        ret.extend(
-            [i] + rest for rest in subsequences(i + 1, b, k - 1)
-        )
+  const ret = [];
+  for(let i = a; i < b + 1 - k; i++) {
+    ret.push(
+      i,
+      ...subsequences(i + 1, b, k - 1)
+    );
+  }
 
-    return ret
+  return ret;
+}
 
-
-"""
+/*
 Subsequences
 
 
@@ -26,6 +29,4 @@ Output:
 Example:
     >>> subsequences(a=1, b=5, k=3)
     [[1, 2, 3], [1, 2, 4], [1, 3, 4], [2, 3, 4]]
-"""
-
-
+*/
